@@ -1,0 +1,12 @@
+button#waiter-btn {
+  background-color: #FFF;
+  border-radius: 10px;
+  font-size: 20px;
+  color: black;
+  margin: 20px;
+  padding: 12px;
+}
+
+button#waiter-btn:hover {
+  background-color: #5BE72A;
+}
