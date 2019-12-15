@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles.css';
-import { Link } from 'react-router-dom';
+
 import Waiter from '../../pages/Waiter/index';
 
-const Button = () => (
-  <Link to='/pages/Waiter/index'><button id="waiter-btn">Garçom/Garçonete</button></Link>
+const Button = (props) => (
+  <button id="btn">{props.name}</button>
 );
 
 export default Button;

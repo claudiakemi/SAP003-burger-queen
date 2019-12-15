@@ -1,12 +1,13 @@
-button#waiter-btn {
+button#btn {
   background-color: #FFF;
   border-radius: 10px;
   font-size: 20px;
   color: black;
   margin: 20px;
   padding: 12px;
+  outline: none;
 }
 
-button#waiter-btn:hover {
+button#btn:focus {
   background-color: #5BE72A;
 }

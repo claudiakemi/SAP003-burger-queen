@@ -1,5 +1,5 @@
 * {
-  margin: 0;
+  margin: 5px;
   padding: 0;
   outline: 0;
   box-sizing: border-box;
@@ -15,7 +15,18 @@ body {
   flex-direction: column;
 }
 
-div.app {
+div#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div#root>div {
+  width: 100%;
+}
+
+div#all {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,5 +34,9 @@ div.app {
 }
 
 h2#work {
-  margin: 20px;
+  margin: 25px;
+}
+
+section#buttons {
+  display: flex;
 }
