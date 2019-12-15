@@ -1,8 +1,9 @@
 import React from 'react';
 import './styles.css';
+import logo from '../../images/logo.png'
 
 const Header = () => (
-  <header id="main-header">Burger Queen</header>
+  <img src={logo} id="logo" />
 );
 
 export default Header;

@@ -1,11 +1,20 @@
 import React from 'react';
-//import firebase from '../../utils/firebaseUtils';
+import firebase from '../../utils/firebaseUtils';
 
 function Waiter () {
-  //console.log(firebase)
-  //firebase.firestore().collection('menu').get(querySnapshot)
+  firebase.firestore().collection('menu').get().then(function(doc){ console.log(doc)})
+  //.onSnapshot(querySnapshot);
+
+  // => {
+  //   querySnapshot.forEach((element) => {
+  //
+  //   })
+  // }
+// )
+
+
   return (
-  <h1 id="waiter">Garçom</h1>
+  <h1 id="waiter">Cardápio</h1>
   )
 }
 export default Waiter
