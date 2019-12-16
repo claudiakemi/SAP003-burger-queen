@@ -2,10 +2,7 @@ import React from 'react';
 import './styles.css';
 import Header from './components/Header';
 import Button from './components/Button'
-import Chef from './pages/Chef';
-import Waiter from './pages/Waiter';
 import { Link } from 'react-router-dom';
-// import firebase from './utils/firebaseUtils';
 
 function App() {
   return (
