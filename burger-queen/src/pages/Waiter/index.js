@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../../utils/firebaseUtils';
-//import Input from '../../components/Input'
 
 function Waiter () {
   const [menu, setMenu] = useState([]);
@@ -20,7 +19,7 @@ function Waiter () {
 );
 
   return (
-    <div>
+    <>
     <h1 id="waiter">Cardápio</h1>
     <ul>
       {menu.map(doc => (
@@ -30,7 +29,7 @@ function Waiter () {
         </li>
       ))}
     </ul>
-    </div>
+    </>
   )
 }
 

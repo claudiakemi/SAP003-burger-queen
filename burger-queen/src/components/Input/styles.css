@@ -1,0 +1,21 @@
+input#submit-btn {
+  background-color: #FFF;
+  border-radius: 10px;
+  font-size: 16px;
+  color: black;
+  margin: 20px;
+  padding: 12px;
+  outline: none;
+}
+
+input#submit-btn:focus {
+  background-color: #5BE72A;
+}
+
+input#submit-btn:hover {
+  background-color: #5BE72A;
+}
+
+#input {
+  font-size: 16px;
+}
