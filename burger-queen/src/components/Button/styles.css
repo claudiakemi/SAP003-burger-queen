@@ -11,3 +11,7 @@ button#btn {
 button#btn:focus {
   background-color: #5BE72A;
 }
+
+button#btn:hover {
+  background-color: #5BE72A;
+}

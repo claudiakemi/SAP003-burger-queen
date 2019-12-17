@@ -1,15 +1,18 @@
-// import React from 'react';
-// import './styles.css';
-//
-// const Input = () => (
-//   // <form id="orderForm">
-// // <select>
-// // <option value="1">1</option>
-// // <option value="2">2</option>
-// // <option value="3">3</option>
-// // </select>
-//   <input type="text">Nome do cliente:</input>
-//   // </form>
-// );
-//
-// export default Input
+import React from 'react';
+import './styles.css';
+
+const Input = (props) => (
+  <form>
+  <label>{props.label}</label>
+  <input type="text" id="input"/>
+  <select>
+  <option value="mesa">Selecione o nº da mesa</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  </select>
+  <input type="submit" value="Salvar" id="submit-btn"/>
+  </form>
+);
+
+export default Input

@@ -3,6 +3,7 @@ import './styles.css';
 import Header from './components/Header';
 import Button from './components/Button'
 import { Link } from 'react-router-dom';
+import Input from './components/Input';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
     <Link to='/pages/Waiter/index'><Button name="Garçom/Garçonete"/></Link>
     <Link to='/pages/Chef/index'><Button name="Cozinheiro(a)"/></Link>
     </section>
+    <Input label="Nome do cliente: "/>
     </div>
   );
 }
