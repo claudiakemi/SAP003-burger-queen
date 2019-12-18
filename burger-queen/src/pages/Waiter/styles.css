@@ -1,3 +1,32 @@
 h1#waiter {
   color: #FFF;
 }
+
+section#item-card {
+  background-color: #FFF;
+  width: 90%;
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: black;
+}
+
+section#all-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+ul#items-list {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
