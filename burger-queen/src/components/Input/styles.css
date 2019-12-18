@@ -19,3 +19,16 @@ input#submit-btn:hover {
 #input {
   font-size: 16px;
 }
+
+form#client-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+input#input {
+  width: 40%;
+  margin: 5px;
+}

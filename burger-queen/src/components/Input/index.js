@@ -2,11 +2,15 @@ import React from 'react';
 import './styles.css';
 
 const Input = (props) => (
-  <form>
+  <form id="client-form">
   <label>{props.label}</label>
   <input type="text" id="input"/>
-  <select>
-  <option value="mesa">Selecione o nº da mesa</option>
+  <select
+//  onChange={e => setTable(e.currentTarget.value)}
+  >
+  <option
+  //value={table}
+  >Selecione o nº da mesa</option>
   <option value="1">1</option>
   <option value="2">2</option>
   <option value="3">3</option>
