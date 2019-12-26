@@ -3,10 +3,11 @@ import firebase from '../../utils/firebaseUtils';
 import './styles.css';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Header from '../../components/Header';
 
 function Waiter () {
   const [menu, setMenu] = useState([]);
-  const [counter, setCounter] = useState(0);
+  const [order, setOrder] = useState([]);
 
 
   useEffect(() => {
@@ -14,40 +15,72 @@ function Waiter () {
     .collection('menu')
     //.where('breakfast', '==', 'true')
     .get()
-    .then(querySnapshot => {
+    .then(
+      querySnapshot => {
       const newMenu = querySnapshot.docs.map((doc) => ({
       ...doc.data()}))
       setMenu(newMenu)
-    })
+    }
+  )
   },
   []
 );
 
+console.log(menu)
+
+const addItem = (item) => {
+  console.log(item.price)
+  if(order.includes(item)){
+    item.quantity += 1
+    //item.acum += item.price
+    setOrder([...order]);
+  } else {
+    item.quantity = 1;
+    setOrder(current => [...current, item])
+  }
+}
+console.log(order)
+console.log(menu)
+
+const subtractItem = (item) => {
+  console.log(item.price)
+  if(order.includes(item)){
+    item.quantity -= 1
+    //item.acum += item.price
+    setOrder([...order]);
+  } else {
+    item.quantity = 1;
+    setOrder(current => [...current, item])
+  }
+}
+
   return (
     <section id="all-menu">
-    <h1 id="waiter">Cardápio</h1>
-    <div>
-      <Button name="Café da manhã" />
-      <Button name="Almoço e Janta" />
-    </div>
-    <Input label="Nome do cliente: " />
-    <ul id="items-list">
+      <Header />
+      <h1 id="waiter">Cardápio</h1>
+      <div>
+        <Button id="btn" name="Café da manhã" />
+        <Button id="btn" name="Almoço e Janta" />
+      </div>
+      <Input label="Nome do cliente: " />
+      <ul id="items-list">
       {menu.map(doc => (
         <section id="item-card">
           <p key={doc.id}></p>
           <h3>{doc.name}</h3>
           <div>Quantidade:
-            <button id={doc.id} onClick={(id) => setCounter(counter - 1)}>-</button>
-            {counter}
-            <button id={doc.id} onClick={(id) => setCounter(counter + 1)}>+</button>
-          </div>
-          <p>Preço: R${doc.price},00</p>
-        </section>
-      ))}
+          <Button id="quant-btn" name="-" handleClick={() => subtractItem(doc)} />
+
+          { order.map(elem => elem.name === doc.name? elem.quantity : false)}
+          <Button id="quant-btn" name="+" handleClick={() => addItem(doc)} />
+        </div>
+        <p>Preço: R${doc.price},00</p>
+      </section>
+    ))}
     </ul>
 
-    <Button
-    //handleClick={addOrder}
+    <Button id="btn"
+    //handleClick={saveOrder}
     name="Salvar pedido"/>
 </section>
   )
@@ -65,13 +98,13 @@ function Waiter () {
   //     .add({
   //       order,
   //       client,
-  //       //table,
+  //       table,
   //       counter
   //     })
   //     .then(() => {
   //       setOrder([])
   //       setClient("")
-  //       //setTable("")
+  //       setTable("")
   //       setCounter(0)
   //     })
   // }

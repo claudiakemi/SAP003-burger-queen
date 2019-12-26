@@ -1,8 +1,14 @@
 import React from 'react';
 import './styles.css';
+import Header from '../../components/Header';
 
 function Chef () {
-return(<h1>Pedidos</h1>)
+return(
+  <section id="all">
+  <Header />
+  <h1>Pedidos</h1>
+  </section>
+)
 }
 
 

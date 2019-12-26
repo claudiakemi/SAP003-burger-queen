@@ -2,7 +2,12 @@ import React from 'react';
 import './styles.css';
 import Header from './components/Header';
 import Button from './components/Button'
-import { Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   return (
@@ -10,8 +15,8 @@ function App() {
     <Header />
     <h2 id="work">Selecione sua função:</h2>
     <section id="buttons">
-    <Link to='/pages/Waiter/index'><Button name="Garçom/Garçonete"/></Link>
-    <Link to='/pages/Chef/index'><Button name="Cozinheiro(a)"/></Link>
+    <Link to='/pages/Waiter/index'><Button id="btn" name="Garçom/Garçonete"/></Link>
+    <Link to='/pages/Chef/index'><Button id="btn" name="Cozinheiro(a)"/></Link>
     </section>
     </div>
   );

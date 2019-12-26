@@ -15,3 +15,8 @@ button#btn:focus {
 button#btn:hover {
   background-color: #5BE72A;
 }
+
+button#quant-btn {
+  font-size: 20px;
+  padding: 2px;
+}
