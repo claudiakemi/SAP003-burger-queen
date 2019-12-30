@@ -59,8 +59,8 @@ const subtractItem = (item) => {
         <Button id="btn" name="Almoço e Janta" />
       </div>
       <section id="client-form">
-      <Input label="Nome do cliente: " />
-      <Input label="Nº da mesa: " />
+      <Input label="Nome do cliente: " value={client} handleChange={e => setClient(e.currentTarget.value)}/>
+      <Input label="Nº da mesa: " value={table} handleChange={e => setTable(e.currentTarget.value)}/>
       </section>
       <ul id="items-list">
       {menu.map(doc => (
@@ -97,24 +97,23 @@ const subtractItem = (item) => {
         setTable('')
         setTotal(0)
       })
+      // return (
+      //   <section id="order">
+      //   <h1 id="waiter">Resumo do pedido</h1>
+      //   <ul id="order-list">
+      //     {order.map(doc => (
+      //       <section id="order-card">
+      //       <p>{doc.order}</p>
+      //       <p>{doc.table}</p>
+      //       <p>{doc.client}</p>
+      //       <p>{doc.timestamp}</p>
+      //       <p>Total: R${doc.total},00</p>
+      //       </section>
+      //     ))}
+      //   </ul>
+      //   </section>
+      // )
   }
-
-
-  // return (
-  //   <section id="order">
-  //   <h1 id="waiter">Resumo do pedido</h1>
-  //   <ul id="order-list">
-  //     {order.map(doc => (
-  //       <section id="order-card">
-  //       <p>{doc.order}</p>
-  //       <p>{doc.table}</p>
-  //       <p>{doc.client}</p>
-  //       <p>Total: R${doc.total},00</p>
-  //       </section>
-  //     ))}
-  //   </ul>
-  //   </section>
-  // )
   }
 
 
