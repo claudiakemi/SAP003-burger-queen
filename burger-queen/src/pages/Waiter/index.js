@@ -8,7 +8,9 @@ import Header from '../../components/Header';
 function Waiter () {
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
-
+  const [client, setClient] = useState('');
+  const [table, setTable] = useState('');
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     firebase.firestore()
@@ -26,10 +28,7 @@ function Waiter () {
   []
 );
 
-console.log(menu)
-
 const addItem = (item) => {
-  console.log(item.price)
   if(order.includes(item)){
     item.quantity += 1
     //item.acum += item.price
@@ -39,11 +38,8 @@ const addItem = (item) => {
     setOrder(current => [...current, item])
   }
 }
-console.log(order)
-console.log(menu)
 
 const subtractItem = (item) => {
-  console.log(item.price)
   if(order.includes(item)){
     item.quantity -= 1
     //item.acum += item.price
@@ -62,7 +58,10 @@ const subtractItem = (item) => {
         <Button id="btn" name="Café da manhã" />
         <Button id="btn" name="Almoço e Janta" />
       </div>
+      <section id="client-form">
       <Input label="Nome do cliente: " />
+      <Input label="Nº da mesa: " />
+      </section>
       <ul id="items-list">
       {menu.map(doc => (
         <section id="item-card">
@@ -70,7 +69,6 @@ const subtractItem = (item) => {
           <h3>{doc.name}</h3>
           <div>Quantidade:
           <Button id="quant-btn" name="-" handleClick={() => subtractItem(doc)} />
-
           { order.map(elem => elem.name === doc.name? elem.quantity : false)}
           <Button id="quant-btn" name="+" handleClick={() => addItem(doc)} />
         </div>
@@ -78,36 +76,28 @@ const subtractItem = (item) => {
       </section>
     ))}
     </ul>
-
-    <Button id="btn"
-    //handleClick={saveOrder}
-    name="Salvar pedido"/>
+    <Button id="btn" handleClick={saveOrder} name="Salvar pedido"/>
 </section>
   )
 
-  // const [order, setOrder] = useState([]);
-  // const [client, setClient] = useState([]);
-  // const [table, setTable] = useState([]);
-  // const [quantity, setQuantity] = useState([]);
-  //
-  //
-  // function addOrder (e) {
-  //   e.preventDefault()
-  //     firebase.firestore()
-  //     .collection('orders')
-  //     .add({
-  //       order,
-  //       client,
-  //       table,
-  //       counter
-  //     })
-  //     .then(() => {
-  //       setOrder([])
-  //       setClient("")
-  //       setTable("")
-  //       setCounter(0)
-  //     })
-  // }
+  function saveOrder (e) {
+    e.preventDefault()
+      firebase.firestore()
+      .collection('orders')
+      .add({
+        order,
+        client,
+        table,
+        total,
+        timestamp: new Date().toLocaleString('pt-BR')
+      })
+      .then(() => {
+        setOrder([])
+        setClient('')
+        setTable('')
+        setTotal(0)
+      })
+  }
 
 
   // return (
@@ -116,10 +106,10 @@ const subtractItem = (item) => {
   //   <ul id="order-list">
   //     {order.map(doc => (
   //       <section id="order-card">
-  //       <p>{order.id}</p>
+  //       <p>{doc.order}</p>
   //       <p>{doc.table}</p>
   //       <p>{doc.client}</p>
-  //       <p>Total: R${doc.price},00</p>
+  //       <p>Total: R${doc.total},00</p>
   //       </section>
   //     ))}
   //   </ul>
