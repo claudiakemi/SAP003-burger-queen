@@ -41,3 +41,9 @@ h2#work {
 section#buttons {
   display: flex;
 }
+
+section#client-form {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
