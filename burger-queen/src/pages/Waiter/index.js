@@ -37,6 +37,7 @@ const addItem = (item) => {
     item.quantity = 1;
     setOrder(current => [...current, item])
   }
+  setTotal(total + (item.price))
 }
 
 const subtractItem = (item) => {
@@ -48,6 +49,7 @@ const subtractItem = (item) => {
     item.quantity = 1;
     setOrder(current => [...current, item])
   }
+  setTotal(total - (item.price))
 }
 
   return (
@@ -96,6 +98,7 @@ const subtractItem = (item) => {
         setClient('')
         setTable('')
         setTotal(0)
+        alert("Pedido salvo")
       })
       // return (
       //   <section id="order">
