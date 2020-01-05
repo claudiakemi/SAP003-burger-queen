@@ -16,11 +16,19 @@ section#item-card {
   color: black;
 }
 
-section#all-menu {
+article#all-menu {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+}
+
+section#client-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 ul#items-list {
@@ -29,4 +37,18 @@ ul#items-list {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+section#resume-card {
+  background-color: #FFF;
+  color: black;
+  border-radius: 5px;
+
+}
+
+hr#line{
+  border-top: 2px dotted #FFF;
+  border-bottom: none;
+  width: 100%;
+
 }
