@@ -40,14 +40,22 @@ function Waiter () {
   }
 
   const subtractItem = (item) => {
-    if(order.includes(item)){
-      item.quantity -= 1
-      setOrder([...order]);
-    } else {
-      item.quantity = 1;
-      setOrder(current => [...current, item])
-    }
-    setTotal(total - (item.price))
+      if(item.quantity > 0){
+        item.quantity -= 1
+        setOrder([...order]);
+        setTotal(total - (item.price))
+      } else {
+        item.quantity = 0;
+        setOrder([...order])
+      }
+  }
+
+  function deleteItem (item) {
+    const itemIndex = order.indexOf(item);
+    order.splice(itemIndex)
+    setOrder([...order])
+    console.log(order)
+    setTotal(total)
   }
 
   return (
@@ -71,7 +79,7 @@ function Waiter () {
       <h3>{doc.name}</h3>
       <div>Quantidade:
       <Button id="quant-btn" name="-" handleClick={() => subtractItem(doc)} />
-      { order.map(elem => elem.name === doc.name? elem.quantity : false)}
+      { order.map(elem => (elem.name === doc.name && elem.quantity > 0)? elem.quantity : false)}
       <Button id="quant-btn" name="+" handleClick={() => addItem(doc)} />
       </div>
       <p>Preço: R${doc.price},00</p>
@@ -86,7 +94,8 @@ function Waiter () {
     {order.map(doc => (
       <section id="order-card">
       <p>{doc.quantity} {doc.name}</p>
-      <p>Preço:{doc.price},00</p>
+      <p>Preço: R${doc.price},00</p>
+      <Button id="delete-item" handleClick={() => deleteItem()} name="Deletar item" />
       <hr/>
       </section>
     ))}
@@ -113,7 +122,7 @@ function Waiter () {
       setClient('')
       setTable('')
       setTotal(0)
-      alert("Pedido salvo")
+      alert("Pedido enviado")
     })
   }
 }
