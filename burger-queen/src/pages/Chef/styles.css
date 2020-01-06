@@ -4,3 +4,23 @@ section#all {
   align-items: center;
   flex-direction: column;
 }
+
+section#order-card {
+  background-color: #FFF;
+  width: 100%;
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: black;
+}
+
+hr#lines {
+  width: 50%;
+  border-bottom: 1px solid grey;
+  border-top: none;
+}

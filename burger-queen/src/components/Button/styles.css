@@ -1,4 +1,4 @@
-button#btn {
+button.btn {
   background-color: #FFF;
   border-radius: 10px;
   font-size: 20px;
@@ -8,11 +8,11 @@ button#btn {
   outline: none;
 }
 
-button#btn:focus {
+button.btn:focus {
   background-color: #5BE72A;
 }
 
-button#btn:hover {
+button.btn:hover {
   background-color: #5BE72A;
 }
 
