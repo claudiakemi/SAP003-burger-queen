@@ -11,6 +11,7 @@ function Waiter () {
   const [client, setClient] = useState('');
   const [table, setTable] = useState('');
   const [total, setTotal] = useState(0);
+  var newMenu = [];
 
   useEffect(() => {
     firebase.firestore()
@@ -18,7 +19,7 @@ function Waiter () {
     .get()
     .then(
       querySnapshot => {
-        const newMenu = querySnapshot.docs.map((doc) => ({
+         newMenu = querySnapshot.docs.map((doc) => ({
           ...doc.data()}))
           setMenu(newMenu)
         }
@@ -28,14 +29,15 @@ function Waiter () {
   );
 
   function filterMenu (e) {
+    console.log(newMenu)
+    const filteredMenu = JSON.parse(JSON.stringify(newMenu));
     const buttonId = e.currentTarget.id;
     if (buttonId === "breakfast") {
-      const breakfast = menu.filter((newMenu) => newMenu.breakfast === true);
+      const breakfast = filteredMenu.filter((menu) => menu.breakfast === true);
       setMenu(breakfast)
     } else {
-      e.currentTarget.removeEventListener(e, setMenu)
-      const lunch = menu.filter((newMenu) => newMenu.breakfast === false);
-      setMenu(lunch)
+      const lunchDinner = filteredMenu.filter((menu) => menu.breakfast === false);
+      setMenu(lunchDinner)
     }
   }
 
@@ -66,7 +68,7 @@ function Waiter () {
     order.splice(itemIndex)
     setOrder([...order])
     console.log(order)
-    setTotal(total)
+    setTotal(total - (item.price*item.quantity))
   }
 
   return (
@@ -78,9 +80,9 @@ function Waiter () {
     <Button id="lunch" class="btn" name="Almoço e Janta" handleClick={filterMenu}/>
     </div>
     <section id="client-form">
-    <Input label="Nome do cliente: " value={client}
+    <Input type="text" id="input" label="Nome do cliente: " value={client}
     handleChange={e => setClient(e.currentTarget.value)}/>
-    <Input label="Nº da mesa: " value={table}
+    <Input type="text" id="input" label="Nº da mesa: " value={table}
     handleChange={e => setTable(e.currentTarget.value)}/>
     </section>
     <ul id="items-list">
@@ -93,8 +95,17 @@ function Waiter () {
       { order.map(elem => (elem.name === doc.name && elem.quantity > 0)? elem.quantity : false)}
       <Button id="quant-btn" name="+" handleClick={() => addItem(doc)} />
       </div>
-      <p>{doc.options} {doc.extra}</p>
-      <p>Preço: R${doc.price},00</p>
+      <section id="options">
+      {doc.options.map(data => (
+        <Button name={data} />
+      ))
+      }
+      {doc.extra.map(data => (
+        <Button name={data} />
+      ))
+      }
+      </section>
+    <p>Preço: R${doc.price},00</p>
       </section>
     ))}
     </ul>
@@ -102,16 +113,15 @@ function Waiter () {
     <section id="resume-card">
     <h1>Resumo do pedido</h1>
     <p>Mesa: {table} - Cliente: {client}</p>
-    <ul id="order-list">
     {order.map(doc => (
       <section id="order-card">
       <p>{doc.quantity} {doc.name}</p>
       <p>Preço: R${doc.price},00</p>
-      <Button id="delete-item" handleClick={() => deleteItem()} name="Deletar item" />
-      <hr/>
+      <Button id="delete-item" handleClick={() => deleteItem(doc)} name="Deletar item" />
+      <hr id="resume-line"/>
       </section>
     ))}
-    </ul>
+
     <p>Total: R${total},00</p>
     </section>
     <Button class="btn" handleClick={saveOrder} name="Enviar para preparo"/>
