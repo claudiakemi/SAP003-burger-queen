@@ -5,7 +5,7 @@ section#all {
   flex-direction: column;
 }
 
-section#order-card {
+section#chef-card {
   background-color: #FFF;
   width: 100%;
   height: auto;
