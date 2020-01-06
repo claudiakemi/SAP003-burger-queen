@@ -6,8 +6,8 @@ section#item-card {
   background-color: #FFF;
   width: 90%;
   height: auto;
-  margin: 10px;
-  padding: 10px;
+  /* margin: 10px;
+  padding: 10px; */
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -40,14 +40,27 @@ ul#items-list {
 }
 
 section#resume-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: #FFF;
   color: black;
   border-radius: 5px;
-
 }
 
 hr#line{
   border-top: 2px dotted #FFF;
   border-bottom: none;
   width: 100%;
+}
+
+hr#resume-line {
+  border-top: 2px solid black;
+  border-bottom: none;
+  width: 90%;
+}
+
+section#order-card {
+  margin: 0px;
 }
