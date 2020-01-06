@@ -33,7 +33,7 @@ function Chef () {
     <h1>Pedidos</h1>
     <div>
     {orders.map(doc => (
-      <section id="order-card">
+      <section id="chef-card">
       <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Horário: {doc.timestamp}</strong></p>
       <hr id="lines"/>
       {doc.order.map(item => (

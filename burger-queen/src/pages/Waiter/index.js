@@ -7,10 +7,13 @@ import Header from '../../components/Header';
 
 function Waiter () {
   const [menu, setMenu] = useState([]);
+  const [filteredMenu,setFilteredMenu] = useState([]);
   const [order, setOrder] = useState([]);
   const [client, setClient] = useState('');
   const [table, setTable] = useState('');
   const [total, setTotal] = useState(0);
+  const [option, setOption] = useState([]);
+  const [extra, setExtra] = useState([]);
   var newMenu = [];
 
   useEffect(() => {
@@ -22,6 +25,7 @@ function Waiter () {
          newMenu = querySnapshot.docs.map((doc) => ({
           ...doc.data()}))
           setMenu(newMenu)
+          setFilteredMenu(newMenu)
         }
       )
     },
@@ -29,15 +33,13 @@ function Waiter () {
   );
 
   function filterMenu (e) {
-    console.log(newMenu)
-    const filteredMenu = JSON.parse(JSON.stringify(newMenu));
     const buttonId = e.currentTarget.id;
     if (buttonId === "breakfast") {
-      const breakfast = filteredMenu.filter((menu) => menu.breakfast === true);
-      setMenu(breakfast)
+      const breakfast = menu.filter((item) => item.breakfast === true);
+      setFilteredMenu(breakfast)
     } else {
-      const lunchDinner = filteredMenu.filter((menu) => menu.breakfast === false);
-      setMenu(lunchDinner)
+      const lunchDinner = menu.filter((item) => item.breakfast === false);
+      setFilteredMenu(lunchDinner)
     }
   }
 
@@ -64,10 +66,8 @@ function Waiter () {
   }
 
   function deleteItem (item) {
-    const itemIndex = order.indexOf(item);
-    order.splice(itemIndex)
-    setOrder([...order])
-    console.log(order)
+    const itemIndex = order.filter(elem => elem !== item)
+    setOrder(itemIndex)
     setTotal(total - (item.price*item.quantity))
   }
 
@@ -86,7 +86,7 @@ function Waiter () {
     handleChange={e => setTable(e.currentTarget.value)}/>
     </section>
     <ul id="items-list">
-    {menu.map(doc => (
+    {filteredMenu.map(doc => (
       <section id="item-card">
       <p key={doc.id}></p>
       <h3>{doc.name}</h3>
@@ -97,13 +97,11 @@ function Waiter () {
       </div>
       <section id="options">
       {doc.options.map(data => (
-        <Button name={data} />
-      ))
-      }
+        (data.length !== 0) ? <Button name={data} /> : ""
+      ))}
       {doc.extra.map(data => (
-        <Button name={data} />
-      ))
-      }
+        (data.length !== 0) ? <Button name={data} /> : ""
+      ))}
       </section>
     <p>Preço: R${doc.price},00</p>
       </section>
