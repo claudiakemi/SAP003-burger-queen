@@ -15,7 +15,6 @@ function Waiter () {
   useEffect(() => {
     firebase.firestore()
     .collection('menu')
-    //.where('breakfast', '==', 'true')
     .get()
     .then(
       querySnapshot => {
@@ -27,6 +26,18 @@ function Waiter () {
     },
     []
   );
+
+  function filterMenu (e) {
+    const buttonId = e.currentTarget.id;
+    if (buttonId === "breakfast") {
+      const breakfast = menu.filter((newMenu) => newMenu.breakfast === true);
+      setMenu(breakfast)
+    } else {
+      e.currentTarget.removeEventListener(e, setMenu)
+      const lunch = menu.filter((newMenu) => newMenu.breakfast === false);
+      setMenu(lunch)
+    }
+  }
 
   const addItem = (item) => {
     if(order.includes(item)){
@@ -59,12 +70,12 @@ function Waiter () {
   }
 
   return (
-    <article id="all-menu">
+    <main id="all-menu">
     <Header />
     <h1 id="waiter">Cardápio</h1>
     <div>
-    <Button id="btn" name="Café da manhã" />
-    <Button id="btn" name="Almoço e Janta" />
+    <Button id="breakfast" class="btn" name="Café da manhã" handleClick={filterMenu}/>
+    <Button id="lunch" class="btn" name="Almoço e Janta" handleClick={filterMenu}/>
     </div>
     <section id="client-form">
     <Input label="Nome do cliente: " value={client}
@@ -82,6 +93,7 @@ function Waiter () {
       { order.map(elem => (elem.name === doc.name && elem.quantity > 0)? elem.quantity : false)}
       <Button id="quant-btn" name="+" handleClick={() => addItem(doc)} />
       </div>
+      <p>{doc.options} {doc.extra}</p>
       <p>Preço: R${doc.price},00</p>
       </section>
     ))}
@@ -102,8 +114,8 @@ function Waiter () {
     </ul>
     <p>Total: R${total},00</p>
     </section>
-    <Button id="btn" handleClick={saveOrder} name="Enviar para preparo"/>
-    </article>
+    <Button class="btn" handleClick={saveOrder} name="Enviar para preparo"/>
+    </main>
   )
 
   function saveOrder (e) {

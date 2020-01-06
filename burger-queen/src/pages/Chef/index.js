@@ -30,21 +30,22 @@ return(
   <div>
   {orders.map(doc => (
     <section id="order-card">
-    <p>Mesa: {doc.table} - Cliente: {doc.client} - Horário: {doc.timestamp}</p>
+    <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Horário: {doc.timestamp}</strong></p>
+    <hr id="lines"/>
     {doc.order.map(item => (
       <>
       <p>{item.quantity} {item.name}</p>
+      <hr id="lines"/>
       </>
     ))}
     <p>Total: R${doc.total},00</p>
-    <Button id="ready" name="Pedido pronto" />
-    <hr/>
+    <Button id="ready" class="btn" name="Pedido pronto" />
+
     </section>
   ))}
   </div>
   </section>
 )
 }
-
 
 export default Chef

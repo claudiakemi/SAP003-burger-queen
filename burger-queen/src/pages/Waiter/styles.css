@@ -16,7 +16,7 @@ section#item-card {
   color: black;
 }
 
-article#all-menu {
+main#all-menu {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,5 +50,4 @@ hr#line{
   border-top: 2px dotted #FFF;
   border-bottom: none;
   width: 100%;
-
 }
