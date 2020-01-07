@@ -8,10 +8,11 @@ section#item-card {
   height: auto;
   border-radius: 5px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   color: black;
+  padding: 10px;
 }
 
 main#all-menu {
@@ -27,6 +28,11 @@ section#client-form{
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  width: 81%;
+  border: 1px solid #FFF;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
 }
 
 ul#items-list {
@@ -45,12 +51,15 @@ section#resume-card {
   background-color: #FFF;
   color: black;
   border-radius: 5px;
+  margin: 10px;
+  padding: 15px;
 }
 
 hr#line{
   border-top: 2px dotted #FFF;
   border-bottom: none;
   width: 100%;
+  margin: 10px;
 }
 
 hr#resume-line {
@@ -59,6 +68,117 @@ hr#resume-line {
   width: 90%;
 }
 
+h1#resume {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
 section#order-card {
   margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+}
+
+div#quantity {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+section#options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+}
+button.option-btn {
+  background-color: rgb(194, 194, 194);
+  color: black;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 10px;
+}
+
+button.option-btn:hover {
+  background-color: black;
+  color: #FFF;
+}
+
+button.option-btn:focus {
+  background-color: black;
+  color: #FFF;
+}
+
+button.extra-btn {
+  background-color: #adfa70;
+  color: black;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 10px;
+}
+
+button.extra-btn:focus {
+  background-color: black;
+  color: #FFF;
+}
+
+button.extra-btn:hover {
+  background-color: black;
+  color: #FFF;
+}
+
+button#quant-btn {
+  background-color: #FFF;
+  border: 1px solid black;
+  font-size: 18px;
+  padding: 10px;
+  width: 10%;
+  height: 7%;
+  border-radius: 5px;
+  color: black;
+  box-shadow: 3px 2px rgb(217, 217, 217);
+}
+
+button#delete-item {
+  background-color: #FFF;
+  border: 1px solid black;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+  box-shadow: 3px 2px rgb(217, 217, 217);
+}
+
+input#input-table {
+  width: 15%;
+  height: 45%;
+}
+
+img#photo {
+  width: 90%;
+  height: 40%;
+  border-radius: 5px;
+}
+
+figure#img-box {
+  width: 50%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+article#product-info {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
 }
