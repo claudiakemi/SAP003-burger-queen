@@ -4,6 +4,7 @@ import './styles.css';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function Waiter () {
   const [menu, setMenu] = useState([]);
@@ -13,7 +14,7 @@ function Waiter () {
   const [table, setTable] = useState('');
   const [total, setTotal] = useState(0);
   const [option, setOption] = useState('');
-  const [extra, setExtra] = useState('');
+  const [extra, setExtra] = useState([]);
   const [orderStatus, setOrderStatus] = useState('Em preparo');
 
   useEffect(() => {
@@ -85,6 +86,11 @@ function Waiter () {
   return (
     <main id="all-menu">
     <Header />
+    <hr id="line"/>
+    <Link to='/pages/Ready/index'>
+    <Button class="btn" name="Ver pedidos prontos para entrega"/>
+    </Link>
+    <hr id="line"/>
     <h1 id="waiter">Cardápio</h1>
     <div>
     <Button id="breakfast" class="btn" name="Café da manhã" handleClick={filterMenu}/>
@@ -144,6 +150,8 @@ function Waiter () {
     <p>Total: R${total},00</p>
     </section>
     <Button class="btn" handleClick={saveOrder} name="Enviar para preparo"/>
+    <Link to='/'><Button class="back" name="Voltar"/></Link>
+
     </main>
   )
 
@@ -166,9 +174,9 @@ function Waiter () {
       setClient('')
       setTable('')
       setOption('')
-      setExtra('')
+      setExtra([])
       setTotal(0)
-      setOrderStatus('')
+      setOrderStatus('Em preparo')
       alert("Pedido enviado")
     })
   }

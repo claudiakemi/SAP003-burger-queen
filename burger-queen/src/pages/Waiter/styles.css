@@ -28,7 +28,7 @@ section#client-form{
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  width: 81%;
+  width: 76%;
   border: 1px solid #FFF;
   border-radius: 5px;
   padding: 10px;
@@ -36,7 +36,7 @@ section#client-form{
 }
 
 ul#items-list {
-  width: 90%;
+  width: 85%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,13 +53,6 @@ section#resume-card {
   border-radius: 5px;
   margin: 10px;
   padding: 15px;
-}
-
-hr#line{
-  border-top: 2px dotted #FFF;
-  border-bottom: none;
-  width: 100%;
-  margin: 10px;
 }
 
 hr#resume-line {
@@ -180,5 +173,13 @@ article#product-info {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
 
+button.back{
+  position: fixed;
+  bottom:40px;
+  right:10px;
+  border-radius: 30px;
+  opacity: 0.8;
+  padding: 15px;
 }
