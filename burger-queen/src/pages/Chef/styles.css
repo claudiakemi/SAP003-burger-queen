@@ -52,3 +52,12 @@ div#options-info {
   align-items: center;
   flex-direction: row;
 }
+
+button.back{
+  position: fixed;
+  bottom:40px;
+  right:10px;
+  border-radius: 30px;
+  opacity: 0.8;
+  padding: 15px;
+}

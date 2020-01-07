@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 import Button from '../../components/Button';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-function Chef () {
+function Ready() {
   const [orders, setOrders] = useState([]);
   const [orderStatus, setOrderStatus] = useState('Em preparo')
 
@@ -26,26 +26,26 @@ function Chef () {
     []
   );
 
-const orderReady = (doc) => {
-  firebase.firestore()
-  .collection('orders')
-  .doc(doc.id)
-  .update({
-   orderStatus: 'Pronto'
-  })
-  .then(() =>
-   window.location.reload()
-  )
-}
+  const orderDelivered = (doc) => {
+    firebase.firestore()
+    .collection('orders')
+    .doc(doc.id)
+    .update({
+     orderStatus: 'Entregue'
+    })
+    .then(() =>
+     window.location.reload()
+    )
+  }
 
-  return(
+  return (
     <main id="all">
     <Header />
     <hr id="line"/>
-    <h1>Pedidos</h1>
+    <h1>Pedidos prontos para entrega</h1>
     <div>
     {orders.map(doc => (
-      (doc.orderStatus == "Em preparo")?
+      (doc.orderStatus == "Pronto")?
       <section id="chef-card">
       <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Horário: {doc.timestamp}</strong></p>
       <hr id="lines"/>
@@ -60,15 +60,14 @@ const orderReady = (doc) => {
       {(doc.extra !== '')? <p id="extra">{doc.extra}</p> : ""}
       </div>
       <p>Total: R${doc.total},00</p>
-      <Button id="pronto" class="btn" handleClick={() => orderReady(doc)} name="Pedido pronto" />
+      <Button id="entregue" class="btn" handleClick={() => orderDelivered(doc)} name="Pedido entregue" />
       </section>
       : <></>
     ))}
     <Link to='/'><Button class="back" name="Voltar"/></Link>
     </div>
     </main>
-
   )
 }
 
-export default Chef
+export default Ready

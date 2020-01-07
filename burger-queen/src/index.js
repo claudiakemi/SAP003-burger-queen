@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Chef from './pages/Chef/index';
 import Waiter from './pages/Waiter/index';
+import Ready from './pages/Ready/index';
 
 const Routing = () => {
   return (
@@ -14,6 +15,7 @@ const Routing = () => {
         <Route exact path="/" component={App} />
         <Route path="/pages/Waiter/index" component={Waiter} />
         <Route path="/pages/Chef/index" component={Chef} />
+        <Route path="/pages/Ready/index" component={Ready} />
       </div>
     </Switch>
   </Router>

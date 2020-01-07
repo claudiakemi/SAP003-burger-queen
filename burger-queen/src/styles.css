@@ -16,6 +16,18 @@ body {
   flex-direction: column;
 }
 
+img#logo {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+hr#line{
+  border-top: 2px dotted #FFF;
+  border-bottom: none;
+  width: 90%;
+  margin: 10px;
+}
+
 div#root {
   width: 100%;
   display: flex;
