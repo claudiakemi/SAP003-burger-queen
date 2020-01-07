@@ -42,8 +42,10 @@ function Chef () {
         <hr id="lines"/>
         </>
       ))}
+      <div id="options-info">
       {(doc.option !== "")? <p id="option">{doc.option}</p> : ""}
-      {(doc.extra !== '')? <p id="option">{doc.extra}</p> : ""}
+      {(doc.extra !== '')? <p id="extra">{doc.extra}</p> : ""}
+      </div>
       <p>Total: R${doc.total},00</p>
       <Button id="ready" class="btn" handleClick={() => orderReady()} name="Pedido pronto" />
       </section>
