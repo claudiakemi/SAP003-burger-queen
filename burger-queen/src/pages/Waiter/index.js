@@ -119,7 +119,6 @@ function Waiter () {
       <hr id="resume-line"/>
       </section>
     ))}
-
     <p>Total: R${total},00</p>
     </section>
     <Button class="btn" handleClick={saveOrder} name="Enviar para preparo"/>

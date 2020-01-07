@@ -44,7 +44,6 @@ function Chef () {
       ))}
       <p>Total: R${doc.total},00</p>
       <Button id="ready" class="btn" handleClick={() => orderReady()} name="Pedido pronto" />
-
       </section>
     ))}
     </div>
