@@ -13,7 +13,7 @@ function Waiter () {
   const [table, setTable] = useState('');
   const [total, setTotal] = useState(0);
   const [option, setOption] = useState('');
-  const [extra, setExtra] = useState([]);
+  const [extra, setExtra] = useState('');
 
   useEffect(() => {
     firebase.firestore()
@@ -45,6 +45,7 @@ function Waiter () {
   function selectOption (event) {
     const optionName = event.currentTarget.id;
     setOption(optionName)
+    console.log(optionName)
   }
 
   function selectExtra (event) {
@@ -154,6 +155,8 @@ function Waiter () {
       order,
       client,
       table,
+      option,
+      extra,
       total,
       timestamp: new Date().toLocaleString('pt-BR')
     })
@@ -161,6 +164,8 @@ function Waiter () {
       setOrder([])
       setClient('')
       setTable('')
+      setOption('')
+      setExtra('')
       setTotal(0)
       alert("Pedido enviado")
     })

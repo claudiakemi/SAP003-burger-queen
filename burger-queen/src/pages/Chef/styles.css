@@ -29,3 +29,9 @@ hr#lines {
   border-bottom: 1px solid grey;
   border-top: none;
 }
+
+p#option {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}

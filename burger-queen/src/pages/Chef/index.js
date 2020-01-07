@@ -38,13 +38,14 @@ function Chef () {
       <hr id="lines"/>
       {doc.order.map(item => (
         <>
-        <p>{item.quantity} {item.name}</p>
+        <p>{item.quantity} {item.name} </p>
         <hr id="lines"/>
         </>
       ))}
+      {(doc.option !== "")? <p id="option">{doc.option}</p> : ""}
+      {(doc.extra !== '')? <p id="option">{doc.extra}</p> : ""}
       <p>Total: R${doc.total},00</p>
       <Button id="ready" class="btn" handleClick={() => orderReady()} name="Pedido pronto" />
-
       </section>
     ))}
     </div>
