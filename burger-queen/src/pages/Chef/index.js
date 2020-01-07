@@ -28,7 +28,7 @@ function Chef () {
   }
 
   return(
-    <section id="all">
+    <main id="all">
     <Header />
     <h1>Pedidos</h1>
     <div>
@@ -48,7 +48,7 @@ function Chef () {
       </section>
     ))}
     </div>
-    </section>
+    </main>
   )
 }
 

@@ -1,15 +1,20 @@
-section#all {
+main#all {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
+h1 {
+  margin: 15px;
+}
+
 section#chef-card {
   background-color: #FFF;
   width: 100%;
   height: auto;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
   padding: 10px;
   border-radius: 5px;
   display: flex;

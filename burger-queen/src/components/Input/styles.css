@@ -7,10 +7,11 @@ form#client-form {
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  width: 80%;
+  width: 65%;
 }
 
 input#input {
-  width: 40%;
+  width: 35%;
+
   margin: 5px;
 }

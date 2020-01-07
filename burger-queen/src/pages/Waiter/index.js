@@ -12,9 +12,8 @@ function Waiter () {
   const [client, setClient] = useState('');
   const [table, setTable] = useState('');
   const [total, setTotal] = useState(0);
-  const [option, setOption] = useState([]);
+  const [option, setOption] = useState('');
   const [extra, setExtra] = useState([]);
-  var newMenu = [];
 
   useEffect(() => {
     firebase.firestore()
@@ -22,7 +21,7 @@ function Waiter () {
     .get()
     .then(
       querySnapshot => {
-         newMenu = querySnapshot.docs.map((doc) => ({
+         const newMenu = querySnapshot.docs.map((doc) => ({
           ...doc.data()}))
           setMenu(newMenu)
           setFilteredMenu(newMenu)
@@ -41,6 +40,17 @@ function Waiter () {
       const lunchDinner = menu.filter((item) => item.breakfast === false);
       setFilteredMenu(lunchDinner)
     }
+  }
+
+  function selectOption (event) {
+    const optionName = event.currentTarget.id;
+    setOption(optionName)
+  }
+
+  function selectExtra (event) {
+    const extraName = event.currentTarget.id;
+    setExtra(extraName)
+    setTotal(total +(1))
   }
 
   const addItem = (item) => {
@@ -82,38 +92,48 @@ function Waiter () {
     <section id="client-form">
     <Input type="text" id="input" label="Nome do cliente: " value={client}
     handleChange={e => setClient(e.currentTarget.value)}/>
-    <Input type="text" id="input" label="Nº da mesa: " value={table}
+    <Input type="text" id="input-table" label="Nº da mesa: " value={table}
     handleChange={e => setTable(e.currentTarget.value)}/>
     </section>
     <ul id="items-list">
     {filteredMenu.map(doc => (
       <section id="item-card">
-      <p key={doc.id}></p>
+      <figure id="img-box">
+      <img id="photo" src={doc.img}/>
+      </figure>
+      <article id="product-info">
       <h3>{doc.name}</h3>
-      <div>Quantidade:
+      <div id="quantity">Quantidade:
       <Button id="quant-btn" name="-" handleClick={() => subtractItem(doc)} />
       { order.map(elem => (elem.name === doc.name && elem.quantity > 0)? elem.quantity : false)}
       <Button id="quant-btn" name="+" handleClick={() => addItem(doc)} />
       </div>
       <section id="options">
       {doc.options.map(data => (
-        (data.length !== 0) ? <Button name={data} /> : ""
+        (data.length !== 0) ? <Button name={data} id={data} class="option-btn" handleClick={selectOption}/> : ""
       ))}
       {doc.extra.map(data => (
-        (data.length !== 0) ? <Button name={data} /> : ""
+        (data.length !== 0) ? <Button name={data} id={data} class="extra-btn" handleClick={selectExtra} /> : ""
       ))}
       </section>
-    <p>Preço: R${doc.price},00</p>
+      <p>Preço: R${doc.price},00</p>
+      </article>
       </section>
     ))}
     </ul>
     <hr id="line"/>
     <section id="resume-card">
-    <h1>Resumo do pedido</h1>
+    <h1 id="resume">Resumo do pedido</h1>
     <p>Mesa: {table} - Cliente: {client}</p>
     {order.map(doc => (
       <section id="order-card">
-      <p>{doc.quantity} {doc.name}</p>
+      <p><strong>{doc.quantity} {doc.name}</strong></p>
+      {doc.options.reduce(data => (
+        (data.length !== 0)? <p>{option}</p> : ""
+      ))}
+      {doc.extra.reduce(data => (
+        (data.length !== 0)? <p>{extra}</p> : ""
+      ))}
       <p>Preço: R${doc.price},00</p>
       <Button id="delete-item" handleClick={() => deleteItem(doc)} name="Deletar item" />
       <hr id="resume-line"/>
