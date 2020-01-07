@@ -6,6 +6,7 @@ import Button from '../../components/Button';
 
 function Chef () {
   const [orders, setOrders] = useState([]);
+  const [orderStatus, setOrderStatus] = useState('Em preparo')
 
   useEffect(() => {
     firebase.firestore()
@@ -23,9 +24,12 @@ function Chef () {
     []
   );
 
-  function orderReady () {
+function orderReady () {
 
-  }
+  const ready = "Pronto";
+  setOrderStatus(ready)
+  console.log(ready)
+}
 
   return(
     <main id="all">
@@ -47,7 +51,7 @@ function Chef () {
       {(doc.extra !== '')? <p id="extra">{doc.extra}</p> : ""}
       </div>
       <p>Total: R${doc.total},00</p>
-      <Button id="ready" class="btn" handleClick={() => orderReady()} name="Pedido pronto" />
+      <Button id="ready" class="btn" handleClick={() => orderReady(orderStatus)} name="Pedido pronto" />
       </section>
     ))}
     </div>

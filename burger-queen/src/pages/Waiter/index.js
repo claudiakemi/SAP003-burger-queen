@@ -14,6 +14,7 @@ function Waiter () {
   const [total, setTotal] = useState(0);
   const [option, setOption] = useState('');
   const [extra, setExtra] = useState('');
+  const [orderStatus, setOrderStatus] = useState('Em preparo');
 
   useEffect(() => {
     firebase.firestore()
@@ -21,7 +22,7 @@ function Waiter () {
     .get()
     .then(
       querySnapshot => {
-         const newMenu = querySnapshot.docs.map((doc) => ({
+        const newMenu = querySnapshot.docs.map((doc) => ({
           ...doc.data()}))
           setMenu(newMenu)
           setFilteredMenu(newMenu)
@@ -45,7 +46,6 @@ function Waiter () {
   function selectOption (event) {
     const optionName = event.currentTarget.id;
     setOption(optionName)
-    console.log(optionName)
   }
 
   function selectExtra (event) {
@@ -66,14 +66,14 @@ function Waiter () {
   }
 
   const subtractItem = (item) => {
-      if(item.quantity > 0){
-        item.quantity -= 1
-        setOrder([...order]);
-        setTotal(total - (item.price))
-      } else {
-        item.quantity = 0;
-        setOrder([...order])
-      }
+    if(item.quantity > 0){
+      item.quantity -= 1
+      setOrder([...order]);
+      setTotal(total - (item.price))
+    } else {
+      item.quantity = 0;
+      setOrder([...order])
+    }
   }
 
   function deleteItem (item) {
@@ -158,6 +158,7 @@ function Waiter () {
       option,
       extra,
       total,
+      orderStatus,
       timestamp: new Date().toLocaleString('pt-BR')
     })
     .then(() => {
@@ -167,6 +168,7 @@ function Waiter () {
       setOption('')
       setExtra('')
       setTotal(0)
+      setOrderStatus('')
       alert("Pedido enviado")
     })
   }
