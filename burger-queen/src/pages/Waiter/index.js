@@ -5,6 +5,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+let extraArray = [];
 
 function Waiter () {
   const [menu, setMenu] = useState([]);
@@ -51,8 +52,9 @@ function Waiter () {
 
   function selectExtra (event) {
     const extraName = event.currentTarget.id;
+    let result = extraArray.push(extraName);
+    (extraArray.length === 1)? setTotal(total+(1)) : setTotal(total)
     setExtra(extraName)
-    setTotal(total +(1))
   }
 
   const addItem = (item) => {
@@ -146,12 +148,10 @@ function Waiter () {
       <hr id="resume-line"/>
       </section>
     ))}
-
     <p>Total: R${total},00</p>
     </section>
     <Button class="btn" handleClick={saveOrder} name="Enviar para preparo"/>
     <Link to='/'><Button class="back" name="Voltar"/></Link>
-
     </main>
   )
 
