@@ -4,7 +4,7 @@ import './styles.css';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 let extraArray = [];
 
 function Waiter () {

@@ -3,7 +3,7 @@ import firebase from '../../utils/firebaseUtils';
 import './styles.css';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Chef () {
   const [orders, setOrders] = useState([]);
@@ -31,7 +31,8 @@ const orderReady = (doc) => {
   .collection('orders')
   .doc(doc.id)
   .update({
-   orderStatus: 'Pronto'
+   orderStatus: 'Pronto',
+   timestampReady: new Date().toLocaleString('pt-BR')
   })
   .then(() =>
    window.location.reload()
@@ -45,7 +46,7 @@ const orderReady = (doc) => {
     <h1>Pedidos</h1>
     <div>
     {orders.map(doc => (
-      (doc.orderStatus == "Em preparo")?
+      (doc.orderStatus === "Em preparo")?
       <section id="chef-card">
       <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Horário: {doc.timestamp}</strong></p>
       <hr id="lines"/>
@@ -57,7 +58,7 @@ const orderReady = (doc) => {
       ))}
       <div id="options-info">
       {(doc.option !== "")? <p id="option">{doc.option}</p> : ""}
-      {(doc.extra !== '')? <p id="extra">{doc.extra}</p> : ""}
+      {(doc.extra.length !== 0)? <p id="extra">{doc.extra}</p> : ""}
       </div>
       <p>Total: R${doc.total},00</p>
       <Button id="pronto" class="btn" handleClick={() => orderReady(doc)} name="Pedido pronto" />
@@ -67,7 +68,6 @@ const orderReady = (doc) => {
     <Link to='/'><Button class="back" name="Voltar"/></Link>
     </div>
     </main>
-
   )
 }
 

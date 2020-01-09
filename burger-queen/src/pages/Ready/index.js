@@ -3,7 +3,7 @@ import firebase from '../../utils/firebaseUtils';
 import './styles.css';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Ready() {
   const [orders, setOrders] = useState([]);
@@ -45,7 +45,7 @@ function Ready() {
     <h1>Pedidos prontos para entrega</h1>
     <div>
     {orders.map(doc => (
-      (doc.orderStatus == "Pronto")?
+      (doc.orderStatus === "Pronto")?
       <section id="chef-card">
       <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Horário: {doc.timestamp}</strong></p>
       <hr id="lines"/>
@@ -57,14 +57,14 @@ function Ready() {
       ))}
       <div id="options-info">
       {(doc.option !== "")? <p id="option">{doc.option}</p> : ""}
-      {(doc.extra !== '')? <p id="extra">{doc.extra}</p> : ""}
+      {(doc.extra.length !== 0)? <p id="extra">{doc.extra}</p> : ""}
       </div>
       <p>Total: R${doc.total},00</p>
       <Button id="entregue" class="btn" handleClick={() => orderDelivered(doc)} name="Pedido entregue" />
       </section>
       : <></>
     ))}
-    <Link to='/'><Button class="back" name="Voltar"/></Link>
+    <Link to='/pages/Waiter/index'><Button class="back" name="Voltar"/></Link>
     </div>
     </main>
   )
