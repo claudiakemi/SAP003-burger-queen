@@ -1,8 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { Route, Switch, BrowserRouter as Router, Link } from 'react-router-dom'
 import './styles.css';
 import Header from './components/Header';
 import Button from './components/Button'
-import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -17,5 +18,7 @@ function App() {
     </div>
   );
 }
+
+ReactDOM.render(App, document.getElementById('root'));
 
 export default App;
