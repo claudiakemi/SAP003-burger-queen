@@ -169,8 +169,8 @@ function Waiter () {
       extra,
       total,
       orderStatus,
-      timestamp: timestamp.getTime(),
-      time: new Date().toLocaleString('pt-BR')
+      timestamp: new Date().getTime(),
+      time:new Date().toLocaleString('pt-BR')
     })
     .then(() => {
       setOrder([])

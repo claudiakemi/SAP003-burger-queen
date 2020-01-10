@@ -27,10 +27,10 @@ function Ready() {
   );
 
   const productionTime = (doc) => {
-    const timestamp = (doc.timestampReady - doc.timestamp)/1000;
-    const hours = Math.floor((timestamp/60)/60);
-    const minutes = Math.floor((timestamp-(hours * 3600))/60);
-    const seconds = Math.floor(timestamp-(hours*3600)-(minutes*60));
+    const timestamp = doc.timestampReady - doc.timestamp;
+    const hours = Math.floor(((timestamp / (1000*60*60)) % 24));
+    const minutes = Math.floor((timestamp / (1000*60)) % 60);
+    const seconds = Math.floor((timestamp / 1000) % 60 );
     return hours + ':' + minutes + ':' +  seconds
   }
 
