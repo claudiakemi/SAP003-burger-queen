@@ -26,6 +26,14 @@ function Ready() {
     []
   );
 
+  const productionTime = (doc) => {
+    const timestamp = (doc.timestampReady - doc.timestamp)/1000;
+    const hours = Math.floor((timestamp/60)/60);
+    const minutes = Math.floor((timestamp-(hours * 3600))/60);
+    const seconds = Math.floor(timestamp-(hours*3600)-(minutes*60));
+    return hours + ':' + minutes + ':' +  seconds
+  }
+
   const orderDelivered = (doc) => {
     firebase.firestore()
     .collection('orders')
@@ -47,7 +55,7 @@ function Ready() {
     {orders.map(doc => (
       (doc.orderStatus === "Pronto")?
       <section id="chef-card">
-      <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Horário: {doc.timestamp}</strong></p>
+      <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Tempo de espera: {productionTime(doc)}</strong></p>
       <hr id="lines"/>
       {doc.order.map(item => (
         <>

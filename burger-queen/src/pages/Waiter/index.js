@@ -5,7 +5,9 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import { Link } from "react-router-dom";
+
 let extraArray = [];
+let timestamp = new Date();
 
 function Waiter () {
   const [menu, setMenu] = useState([]);
@@ -167,7 +169,8 @@ function Waiter () {
       extra,
       total,
       orderStatus,
-      timestamp: new Date().toLocaleString('pt-BR')
+      timestamp: timestamp.getTime(),
+      time: new Date().toLocaleString('pt-BR')
     })
     .then(() => {
       setOrder([])
