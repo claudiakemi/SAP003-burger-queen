@@ -4,6 +4,7 @@ import './styles.css';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import { Link } from "react-router-dom";
+let timestamp = new Date();
 
 function Chef () {
   const [orders, setOrders] = useState([]);
@@ -32,10 +33,11 @@ const orderReady = (doc) => {
   .doc(doc.id)
   .update({
    orderStatus: 'Pronto',
-   timestampReady: new Date().toLocaleString('pt-BR')
+   timestampReady: timestamp.getTime()
   })
-  .then(() =>
-   window.location.reload()
+  .then(() => {
+    window.location.reload();
+  }
   )
 }
 
@@ -48,7 +50,7 @@ const orderReady = (doc) => {
     {orders.map(doc => (
       (doc.orderStatus === "Em preparo")?
       <section id="chef-card">
-      <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Horário: {doc.timestamp}</strong></p>
+      <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Horário: {doc.time}</strong></p>
       <hr id="lines"/>
       {doc.order.map(item => (
         <>
