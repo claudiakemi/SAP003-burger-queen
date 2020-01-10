@@ -33,7 +33,7 @@ const orderReady = (doc) => {
   .doc(doc.id)
   .update({
    orderStatus: 'Pronto',
-   timestampReady: timestamp.getTime()
+   timestampReady: new Date().getTime()
   })
   .then(() => {
     window.location.reload();
