@@ -1,12 +1,12 @@
-#Projeto Burger Queen
+# Projeto Burger Queen
 
-##Índice
+## Índice
 
-* [1. Introdução] (#1-introdução)
-* [2. Histórias de usuário] (#5-histórias-de-usuário)
-* [3. Protótipo] (#3-protótipo)
-* [4. Ferramentas utilizadas] (#4-ferramentas-utilizadas)
-* [5. Como utilizar] (#4-como-utilizar)
+* [1. Introdução](#1-introdução)
+* [2. Histórias de usuário](#5-histórias-de-usuário)
+* [3. Protótipo](#3-protótipo)
+* [4. Ferramentas utilizadas](#4-ferramentas-utilizadas)
+* [5. Como utilizar](#4-como-utilizar)
 
 ***
 
