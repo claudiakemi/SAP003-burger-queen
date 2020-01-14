@@ -4,7 +4,6 @@ import './styles.css';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import { Link } from "react-router-dom";
-let timestamp = new Date();
 
 function Chef () {
   const [orders, setOrders] = useState([]);
