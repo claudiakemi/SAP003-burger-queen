@@ -7,7 +7,6 @@ import Header from '../../components/Header';
 import { Link } from "react-router-dom";
 
 let extraArray = [];
-let timestamp = new Date();
 
 function Waiter () {
   const [menu, setMenu] = useState([]);
