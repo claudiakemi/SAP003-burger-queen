@@ -12,8 +12,8 @@ function App() {
     <hr id="line"/>
     <h2 id="work">Selecione sua função:</h2>
     <section id="buttons">
-    <Link to='/pages/Waiter/index'><Button class="btn" name="Garçom/Garçonete"/></Link>
-    <Link to='/pages/Chef/index'><Button class="btn" name="Cozinheiro(a)"/></Link>
+    <Link to='/Waiter'><Button class="btn" name="Garçom/Garçonete"/></Link>
+    <Link to='/Chef'><Button class="btn" name="Cozinheiro(a)"/></Link>
     </section>
     </div>
   );

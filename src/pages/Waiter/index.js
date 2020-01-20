@@ -88,71 +88,76 @@ function Waiter () {
 
   return (
     <main id="all-menu">
-    <Header />
-    <hr id="line"/>
-    <Link to='/pages/Ready/index'>
-    <Button class="btn" name="Ver pedidos prontos para entrega"/>
-    </Link>
-    <hr id="line"/>
-    <h1 id="waiter">Cardápio</h1>
-    <div>
-    <Button id="breakfast" class="btn" name="Café da manhã" handleClick={filterMenu}/>
-    <Button id="lunch" class="btn" name="Almoço e Janta" handleClick={filterMenu}/>
-    </div>
-    <section id="client-form">
-    <Input type="text" id="input" label="Nome do cliente: " value={client}
-    handleChange={e => setClient(e.currentTarget.value)}/>
-    <Input type="text" id="input-table" label="Nº da mesa: " value={table}
-    handleChange={e => setTable(e.currentTarget.value)}/>
-    </section>
-    <ul id="items-list">
-    {filteredMenu.map(doc => (
-      <section id="item-card">
-      <figure id="img-box">
-      <img id="photo" src={doc.img}/>
-      </figure>
-      <article id="product-info">
-      <h3>{doc.name}</h3>
-      <div id="quantity">Quantidade:
-      <Button id="quant-btn" name="-" handleClick={() => subtractItem(doc)} />
-      { order.map(elem => (elem.name === doc.name && elem.quantity > 0)? elem.quantity : false)}
-      <Button id="quant-btn" name="+" handleClick={() => addItem(doc)} />
+      <Header />
+      <hr id="line"/>
+      <Link to='/Ready'>
+        <Button class="btn" name="Ver pedidos prontos para entrega"/>
+      </Link>
+      <hr id="line"/>
+      <h1 id="waiter">Cardápio</h1>
+      <div>
+        <Button id="breakfast" class="btn" name="Café da manhã" handleClick={filterMenu}/>
+        <Button id="lunch" class="btn" name="Almoço e Janta" handleClick={filterMenu}/>
       </div>
-      <section id="options">
-      {doc.options.map(data => (
-        (data.length !== 0) ? <Button name={data} id={data} class="option-btn" handleClick={selectOption}/> : ""
-      ))}
-      {doc.extra.map(data => (
-        (data.length !== 0) ? <Button name={data} id={data} class="extra-btn" handleClick={selectExtra} /> : ""
-      ))}
+      <section id="client-form">
+        <Input type="text" id="input" label="Nome do cliente: " value={client}
+          handleChange={e => setClient(e.currentTarget.value)}/>
+        <Input type="text" id="input-table" label="Nº da mesa: " value={table}
+          handleChange={e => setTable(e.currentTarget.value)}/>
       </section>
-      <p>Preço: R${doc.price},00</p>
-      </article>
+      <ul id="items-list">
+        {filteredMenu.map(doc => (
+          <section id="item-card">
+          <figure id="img-box">
+          <img id="photo" src={doc.img}/>
+          </figure>
+          <article id="product-info">
+            <h3>{doc.name}</h3>
+            <div id="quantity">Quantidade:
+              <Button id="quant-btn" name="-" handleClick={() => subtractItem(doc)} />
+                {order.map(elem => (elem.name === doc.name && elem.quantity > 0)?
+                  elem.quantity : false)}
+              <Button id="quant-btn" name="+" handleClick={() => addItem(doc)} />
+            </div>
+          <section id="options">
+            {doc.options.map(data => (
+              (data.length !== 0) ?
+              <Button name={data} id={data} class="option-btn" handleClick={selectOption}/>
+              : ""
+            ))}
+            {doc.extra.map(data => (
+              (data.length !== 0) ?
+              <Button name={data} id={data} class="extra-btn" handleClick={selectExtra} />
+              : ""
+            ))}
+          </section>
+          <p>Preço: R${doc.price},00</p>
+          </article>
+          </section>
+        ))}
+      </ul>
+      <hr id="line"/>
+      <section id="resume-card">
+        <h1 id="resume">Resumo do pedido</h1>
+        <p>Mesa: {table} - Cliente: {client}</p>
+          {order.map(doc => (
+            <section id="order-card">
+            <p><strong>{doc.quantity} {doc.name}</strong></p>
+              {doc.options.reduce(data => (
+                (data.length !== 0)? <p>{option}</p> : ""
+              ))}
+              {doc.extra.reduce(data => (
+                (data.length !== 0)? <p>{extra}</p> : ""
+              ))}
+            <p>Preço: R${doc.price},00</p>
+            <Button id="delete-item" handleClick={() => deleteItem(doc)} name="Deletar item"/>
+            <hr id="resume-line"/>
+            </section>
+          ))}
+        <p>Total: R${total},00</p>
       </section>
-    ))}
-    </ul>
-    <hr id="line"/>
-    <section id="resume-card">
-    <h1 id="resume">Resumo do pedido</h1>
-    <p>Mesa: {table} - Cliente: {client}</p>
-    {order.map(doc => (
-      <section id="order-card">
-      <p><strong>{doc.quantity} {doc.name}</strong></p>
-      {doc.options.reduce(data => (
-        (data.length !== 0)? <p>{option}</p> : ""
-      ))}
-      {doc.extra.reduce(data => (
-        (data.length !== 0)? <p>{extra}</p> : ""
-      ))}
-      <p>Preço: R${doc.price},00</p>
-      <Button id="delete-item" handleClick={() => deleteItem(doc)} name="Deletar item" />
-      <hr id="resume-line"/>
-      </section>
-    ))}
-    <p>Total: R${total},00</p>
-    </section>
-    <Button class="btn" handleClick={saveOrder} name="Enviar para preparo"/>
-    <Link to='/'><Button class="back" name="Voltar"/></Link>
+      <Button class="btn" handleClick={saveOrder} name="Enviar para preparo"/>
+      <Link to='/'><Button class="back" name="Voltar"/></Link>
     </main>
   )
 

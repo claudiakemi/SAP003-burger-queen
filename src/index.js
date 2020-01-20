@@ -11,12 +11,10 @@ const Routing = () => {
   return (
   <Router>
     <Switch>
-      <div>
         <Route exact path="/" component={App} />
-        <Route path="/pages/Waiter/index" component={Waiter} />
-        <Route path="/pages/Chef/index" component={Chef} />
-        <Route path="/pages/Ready/index" component={Ready} />
-      </div>
+        <Route path="/Waiter" component={Waiter} />
+        <Route path="/Chef" component={Chef} />
+        <Route path="/Ready" component={Ready} />
     </Switch>
   </Router>
   )

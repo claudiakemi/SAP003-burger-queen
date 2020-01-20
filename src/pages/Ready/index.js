@@ -39,41 +39,41 @@ function Ready() {
     .collection('orders')
     .doc(doc.id)
     .update({
-     orderStatus: 'Entregue'
+      orderStatus: 'Entregue'
     })
     .then(() =>
-     window.location.reload()
-    )
-  }
+    window.location.reload()
+  )
+}
 
   return (
     <main id="all">
-    <Header />
-    <hr id="line"/>
-    <h1>Pedidos prontos para entrega</h1>
-    <div>
-    {orders.map(doc => (
-      (doc.orderStatus === "Pronto")?
-      <section id="chef-card">
-      <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Tempo de espera: {productionTime(doc)}</strong></p>
-      <hr id="lines"/>
-      {doc.order.map(item => (
-        <>
-        <p>{item.quantity} {item.name} </p>
-        <hr id="lines"/>
-        </>
-      ))}
-      <div id="options-info">
-      {(doc.option !== "")? <p id="option">{doc.option}</p> : ""}
-      {(doc.extra.length !== 0)? <p id="extra">{doc.extra}</p> : ""}
+      <Header />
+      <hr id="line"/>
+      <h1>Pedidos prontos para entrega</h1>
+      <div>
+        {orders.map(doc => (
+          (doc.orderStatus === "Pronto")?
+            <section id="chef-card">
+            <p><strong>Mesa: {doc.table} - Cliente: {doc.client} - Tempo de espera: {productionTime(doc)}</strong></p>
+            <hr id="lines"/>
+            {doc.order.map(item => (
+              <>
+              <p>{item.quantity} {item.name} </p>
+              <hr id="lines"/>
+              </>
+            ))}
+            <div id="options-info">
+              {(doc.option !== "")? <p id="option">{doc.option}</p> : ""}
+              {(doc.extra.length !== 0)? <p id="extra">{doc.extra}</p> : ""}
+            </div>
+            <p>Total: R${doc.total},00</p>
+            <Button id="entregue" class="btn" handleClick={() => orderDelivered(doc)} name="Pedido entregue" />
+            </section>
+            : <></>
+        ))}
+      <Link to='/Waiter'><Button class="back" name="Voltar"/></Link>
       </div>
-      <p>Total: R${doc.total},00</p>
-      <Button id="entregue" class="btn" handleClick={() => orderDelivered(doc)} name="Pedido entregue" />
-      </section>
-      : <></>
-    ))}
-    <Link to='/pages/Waiter/index'><Button class="back" name="Voltar"/></Link>
-    </div>
     </main>
   )
 }
