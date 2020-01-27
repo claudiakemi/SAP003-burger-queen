@@ -147,7 +147,7 @@ function Waiter () {
         {filteredMenu.map(doc => (
           <section id="item-card">
           <figure id="img-box">
-          <img id="photo" src={doc.img}/>
+            <img id="photo" src={doc.img}/>
           </figure>
           <article id="product-info">
             <h3>{doc.name}</h3>
