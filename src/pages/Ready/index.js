@@ -26,7 +26,7 @@ function Ready() {
     []
   );
 
-  const productionTime = (doc) => {
+  function productionTime (doc) {
     const timestamp = doc.timestampReady - doc.timestamp;
     const hours = Math.floor(((timestamp / (1000*60*60)) % 24));
     const minutes = Math.floor((timestamp / (1000*60)) % 60);
@@ -34,7 +34,7 @@ function Ready() {
     return hours + ':' + minutes + ':' +  seconds
   }
 
-  const orderDelivered = (doc) => {
+  function orderDelivered (doc) {
     firebase.firestore()
     .collection('orders')
     .doc(doc.id)
