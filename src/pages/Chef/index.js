@@ -26,7 +26,7 @@ function Chef () {
     []
   );
 
-  const orderReady = (doc) => {
+  function orderReady (doc) {
     firebase.firestore()
     .collection('orders')
     .doc(doc.id)

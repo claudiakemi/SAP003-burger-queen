@@ -58,7 +58,7 @@ function Waiter () {
     setExtra(extraName)
   }
 
-  const addItem = (item) => {
+  function addItem (item) {
     if(order.includes(item)){
       item.quantity += 1
       setOrder([...order]);
@@ -69,7 +69,7 @@ function Waiter () {
     setTotal(total + (item.price))
   }
 
-  const subtractItem = (item) => {
+  function subtractItem (item) {
     if(item.quantity > 0){
       item.quantity -= 1
       setOrder([...order]);
@@ -85,6 +85,44 @@ function Waiter () {
     setOrder(itemIndex)
     setTotal(total - (item.price*item.quantity))
   }
+
+  function saveOrder (e) {
+    e.preventDefault()
+    if (order.length && table && client) {
+      firebase.firestore()
+      .collection('orders')
+      .add({
+        order,
+        client,
+        table,
+        option,
+        extra,
+        total,
+        orderStatus,
+        timestamp: new Date().getTime(),
+        time:new Date().toLocaleString('pt-BR')
+      })
+      .then(() => {
+        setOrder([])
+        setClient('')
+        setTable('')
+        setOption('')
+        setExtra([])
+        setTotal(0)
+        setOrderStatus('Em preparo')
+        alert("Pedido enviado")
+      })
+    }
+    else if (!order.length) {
+      alert('Selecione um produto para enviar o pedido')
+    }
+    else if (!table) {
+      alert('Insira o número da mesa')
+    }
+    else if (!client) {
+      alert('Insira o nome do cliente')
+    }
+}
 
   return (
     <main id="all-menu">
@@ -160,33 +198,6 @@ function Waiter () {
       <Link to='/'><Button class="back" name="Voltar"/></Link>
     </main>
   )
-
-  function saveOrder (e) {
-    e.preventDefault()
-    firebase.firestore()
-    .collection('orders')
-    .add({
-      order,
-      client,
-      table,
-      option,
-      extra,
-      total,
-      orderStatus,
-      timestamp: new Date().getTime(),
-      time:new Date().toLocaleString('pt-BR')
-    })
-    .then(() => {
-      setOrder([])
-      setClient('')
-      setTable('')
-      setOption('')
-      setExtra([])
-      setTotal(0)
-      setOrderStatus('Em preparo')
-      alert("Pedido enviado")
-    })
-  }
 }
 
-export default Waiter
+export default Waiter;

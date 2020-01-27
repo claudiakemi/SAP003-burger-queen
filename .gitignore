@@ -5,8 +5,9 @@
 /node_modules
 /.pnp
 .pnp.js
-**/firebaseUtils.js
+
 /utils
+**/firebaseUtils.js
 **/firestore.rules
 **/database.rules.json
 **/firestore.indexes.json
